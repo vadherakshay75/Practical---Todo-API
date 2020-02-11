@@ -31,3 +31,15 @@
 
 en:
   hello: "Hello world"
+  bad_request: Bad request
+  record_not_found: Record not found
+  invalid_details: Invalid credentials
+  user_not_found: User not found
+  login_success: Login successfull
+  resource:
+    created:
+      success: "%{resource} created successfully."
+    updated:
+      success: "%{resource} updated successfully."
+    destroyed:
+      success: "%{resource} destroyed successfully."

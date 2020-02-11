@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# application controller
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :authenticate_user_from_token!, unless: -> { %w[sessions users].include?(controller_name) }
@@ -13,11 +14,11 @@ class ApplicationController < ActionController::API
   end
 
   def rescue_404
-    render_json({ message: 'Bad request' }, :not_found)
+    render_json({ message: I18n.t('bad_request') }, :not_found)
   end
 
   def record_not_found
-    render_json({ message: 'Record not found' }, :not_found)
+    render_json({ message: I18n.t('record_not_found') }, :not_found)
   end
 
   def render_json(object, status = :ok)
@@ -30,7 +31,7 @@ class ApplicationController < ActionController::API
     if user
       api_current_user(user)
     else
-      render_json({ message: 'Invalid credentials' }, :not_found)
+      render_json({ message: I18n.t('invalid_details') }, :not_found)
     end
   end
 end

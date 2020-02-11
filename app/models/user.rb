@@ -15,6 +15,10 @@ class User < ApplicationRecord
     errors.add('must be in lower case.') unless email == email.downcase
   end
 
+  def completed_todos
+    todos.map { |todo| todo if todo.all_items_completed? }.compact
+  end
+
   def send_welcome_email
     # TODO: For testing/practical purpose, It's deliver_now, it must be deliver_later
     UserMailer.send_welcome_email(self).deliver_now
